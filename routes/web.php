@@ -24,7 +24,13 @@ Route::get('/home/{name}', function ($name) {
 //Route::get('/admin', 'AdminController@index');
 Route::group(['prefix' => 'admin'], function(){
     Route::get('/', 'App\Http\Controllers\AdminController@index')->name('admin'); // works fine
-    Route::get('heroes', 'App\Http\Controllers\HeroController@index')->name('admin.heroes');
+
+    Route::group(['prefix' => 'heroes'], function(){
+        Route::get('/', 'App\Http\Controllers\HeroController@index')->name('admin.heroes');
+        Route::get('create', 'App\Http\Controllers\HeroController@create')->name('admin.heroes.create');
+        Route::post('store', 'App\Http\Controllers\HeroController@store')->name('admin.heroes.store');
+    });    
+    
     Route::get('items', 'App\Http\Controllers\ItemController@index')->name('admin.items');
     Route::get('enemies', 'App\Http\Controllers\EnemyController@index')->name('admin.enemies');
 });
