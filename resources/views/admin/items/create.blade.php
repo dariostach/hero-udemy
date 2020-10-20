@@ -1,8 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-<h1>Crear Nuevo Heroe</h1>
-<form action="{{ route('heroes.store') }}" method="post">
+<h1>Crear Nuevo Item</h1>
+<form action="{{ route('item.store') }}" method="post">
 @csrf
     <div class="form-group">
         <label for="name">Nombre</label>
@@ -25,8 +25,8 @@
         <input type="number" class="form-control" id="luck" name="luck" placeholder="Ingrese los puntos de suerte" required>        
     </div>
     <div class="form-group">
-        <label for="coins">Monedas</label>
-        <input type="number" class="form-control" id="coins" name="coins" placeholder="Ingrese la cantidad de monedas" required>        
+        <label for="coins">Precio</label>
+        <input type="number" class="form-control" id="cost" name="cost" placeholder="Ingrese el precio" required>        
     </div>
     
     <button type="submit" class="btn btn-primary">Crear</button>
