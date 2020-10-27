@@ -9,4 +9,7 @@ class Level extends Model
 {
     use HasFactory;
     protected $table = 'levels';
+    public function heroes(){
+        return $this->hasMany('App\Models\Hero');
+    }
 }

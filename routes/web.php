@@ -38,5 +38,7 @@ Route::group(['prefix' => 'admin'], function(){
     });   */ 
     
     Route::resource('item', 'App\Http\Controllers\ItemController');
-    Route::get('enemies', 'App\Http\Controllers\EnemyController@index')->name('admin.enemies');
+    Route::resource('enemy', 'App\Http\Controllers\EnemyController');
+    //Route::get('enemies', 'App\Http\Controllers\EnemyController@index')->name('admin.enemies');
+    Route::get('bs', 'App\Http\Controllers\BSController@index')->name('admin.bs');
 });

@@ -43,12 +43,23 @@ class HeroController extends Controller
         $hero->def = $request->input('def');
         $hero->luck = $request->input('luck');
         $hero->coins = $request->input('coins');
+        if($request->hasFile('img_path')){ // si existe una imagen seleccionada
+            $file = $request->file('img_path');
+            $name = time() .'_'. $file->getClientOriginalName(); // se concatena el tiempo con el nombre original del archivo 
+            $file->move(public_path().'/images/heroes', $name);
+
+            $hero->img_path = $name;
+        }
         
         $hero->save(); 
         return redirect()->route('heroes.index');
     }
     public function destroy($id){
         $hero = Hero::find($id);
+        // para borrar la imagen local
+        $filePath = public_path().'/images/heroes/'. $hero->img_path;
+        \File::delete($filePath);
+        
         $hero->delete();
         return redirect()->route('heroes.index');
     }
